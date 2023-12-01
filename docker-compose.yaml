@@ -1,27 +1,31 @@
+version: '3'
 services:
   aem-base:
-    build: ./aem_base
+    build:
+      context: ./aem_base
 
   aem-author:
-    build: ./author
+    build:
+      context: ./author/
+      dockerfile: Dockerfile
     depends_on:
       - aem-base
     ports:
       - "4502:4502"
-
-  # aem-publish:
-  #   build: publish
-  #   ports:
-  #     - "4503:4503"
-
-  # aem-dispatcher:
-  #   build: dispatcher
-  #   ports:
-  #     - "80:80"
-  #   links:
-  #     - aem-author
-  #     - aem-publish
-
-# volumes:
-#   aem-author:
-#     driver: local
+    volumes:
+      - aem_author:/opt/aem/crx-quickstart
+  aem-publisher:
+    build:
+      context: ./publisher/
+      dockerfile: Dockerfile
+    depends_on:
+      - aem_base
+    ports:
+      - "4503/4503"
+    volumes:
+      - aem_publisher:/opt/aem/crx-quickstart
+volumes:
+  aem_author:
+    driver: local
+  aem_publisher:
+    driver: local

@@ -1,5 +1,5 @@
 # Use the previously created aem-base
-FROM aem-base
+FROM dockerized_aemcaas-aem-base:latest
 
 # Expose AEM author in port 4502
 EXPOSE 4502

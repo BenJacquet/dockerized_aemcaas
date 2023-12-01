@@ -1,5 +1,5 @@
 # Use the previously created aem-base
-FROM aem-base
+FROM dockerized_aemcaas-aem-base:latest
 
 # Expose AEM publish in port 4503
 EXPOSE 4503
