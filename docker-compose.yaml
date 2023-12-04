@@ -27,5 +27,13 @@ services:
 volumes:
   aem_author:
     driver: local
+    driver_opts:
+      type: none
+      device: ./data/aem_author_data
+      o: bind
   aem_publisher:
     driver: local
+    driver_opts:
+      type: none
+      device: ./data/aem_author_data
+      o: bind
